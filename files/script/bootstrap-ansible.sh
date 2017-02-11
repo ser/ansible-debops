@@ -38,14 +38,14 @@ install_ansible_requirements () {
     sudo apt-get --no-install-recommends -qq -y install git devscripts \
         python-paramiko python-yaml python-jinja2 python-httplib2 \
         cdbs debhelper dpkg-dev fakeroot sshpass python-nose python-passlib \
-        python-setuptools asciidoc xmlto build-essential
+        python-setuptools asciidoc xmlto build-essential python-sphinx
 
 }
 
 build_ansible_deb () {
 
     # Build Debian package
-    LANG=C make deb
+    LANG=C make local_deb
 
     # Check if .deb package with new method is present
     if [ -n "$(find deb-build/unstable/ -name ansible_*_all.deb 2>/dev/null)" ]; then
